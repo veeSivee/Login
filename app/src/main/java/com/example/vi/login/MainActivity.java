@@ -1,6 +1,7 @@
 package com.example.vi.login;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,18 +11,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher{
 
-    @InjectView(R.id.btnSubmit) Button btnSUbmit;
-    @InjectView(R.id.etFullname) EditText etName;
-    @InjectView(R.id.etPhone) EditText etPhone;
-    @InjectView(R.id.etEmail) EditText etEmail;
-    @InjectView(R.id.tvWarningFullname) TextView tvWarningName;
-    @InjectView(R.id.tvWarningPhone) TextView tvWarningPhone;
-    @InjectView(R.id.tvWarningEmail) TextView tvWarningEmail;
+    @BindView(R.id.btnSubmit) Button btnSUbmit;
+    @BindView(R.id.etFullname) EditText etName;
+    @BindView(R.id.etPhone) EditText etPhone;
+    @BindView(R.id.etEmail) EditText etEmail;
+    @BindView(R.id.tlFullname) TextInputLayout tlFullname;
+    @BindView(R.id.tlPhone) TextInputLayout tlPhone;
+    @BindView(R.id.tlEmail) TextInputLayout tlEmail;
 
     private boolean valName,valPhone,valEmail;
     private String name, phone, email;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.inject(this);
+        ButterKnife.bind(this);
 
         inisialisasi();
     }
@@ -63,15 +64,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         boolean valEmail = validasiData.isEmailValid(email);
 
         if(!valName){
-            tvWarningName.setText("Name cannot empty");
+            tlFullname.setError("Name cannot empty");
+        }else{
+            tlFullname.setError(null);
         }
 
         if(!valPhone){
-            tvWarningPhone.setText("Phone cannot empty");
+            tlPhone.setError("Phone cannot empty");
+        }else{
+            tlPhone.setError(null);
         }
 
         if(!valEmail){
-            tvWarningEmail.setText("sample email : myemail@gmail.com");
+            tlEmail.setError("sample email : myemail@gmail.com");
+        }else{
+            tlEmail.setError(null);
         }
 
 
