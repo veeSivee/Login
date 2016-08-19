@@ -30,7 +30,8 @@
         android:id="@+id/tvWarningFullname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etFullname"/>
+        android:layout_below="@+id/etFullname"
+        android:textColor="@color/colorAccent"/>
 
     <TextView
         android:id="@+id/tvPhone"
@@ -55,7 +56,8 @@
         android:id="@+id/tvWarningPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etPhone"/>
+        android:layout_below="@+id/etPhone"
+        android:textColor="@color/colorAccent"/>
 
 
     <TextView
@@ -80,13 +82,15 @@
         android:id="@+id/tvWarningEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etEmail"/>
+        android:layout_below="@+id/etEmail"
+        android:textColor="@color/colorAccent"/>
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:text="SUBMIT"
+        android:textStyle="bold"
         android:layout_below="@+id/tvWarningEmail"
         android:layout_toRightOf="@+id/tvEmail"
         android:layout_marginTop="67dp"

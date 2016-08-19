@@ -10,12 +10,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import butterknife.ButterKnife;
+import butterknife.InjectView;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher{
 
-
-    Button btnSUbmit;
-    TextView tvWarningName, tvWarningPhone, tvWarningEmail;
-    EditText etName, etPhone, etEmail;
+    @InjectView(R.id.btnSubmit) Button btnSUbmit;
+    @InjectView(R.id.etFullname) EditText etName;
+    @InjectView(R.id.etPhone) EditText etPhone;
+    @InjectView(R.id.etEmail) EditText etEmail;
+    @InjectView(R.id.tvWarningFullname) TextView tvWarningName;
+    @InjectView(R.id.tvWarningPhone) TextView tvWarningPhone;
+    @InjectView(R.id.tvWarningEmail) TextView tvWarningEmail;
 
     private boolean valName,valPhone,valEmail;
     private String name, phone, email;
@@ -26,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.inject(this);
 
         inisialisasi();
     }
@@ -36,14 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         valName = false;
         valPhone = false;
         valEmail = false;
-
-        btnSUbmit = (Button)findViewById(R.id.btnSubmit);
-        tvWarningName = (TextView)findViewById(R.id.tvWarningFullname);
-        tvWarningPhone = (TextView)findViewById(R.id.tvWarningPhone);
-        tvWarningEmail = (TextView)findViewById(R.id.tvWarningEmail);
-        etName = (EditText)findViewById(R.id.etFullname);
-        etPhone = (EditText)findViewById(R.id.etPhone);
-        etEmail= (EditText)findViewById(R.id.etEmail);
 
         btnSUbmit.setOnClickListener(this);
         etName.addTextChangedListener(this);
