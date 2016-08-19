@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.vi.login.DataLogin">
+
+    <TextView
+        android:id="@+id/tvN1"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/sizeData"
+        android:text="Full Name"
+        android:paddingTop="@dimen/padTop"/>
+
+    <TextView
+        android:id="@+id/tvN2"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textStyle="bold"
+        android:textSize="@dimen/sizeData"
+        android:layout_toRightOf="@+id/tvN1"
+        android:paddingTop="@dimen/padTop"/>
+
+    <TextView
+        android:id="@+id/tvDataName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/sizeData"
+        android:layout_toRightOf="@+id/tvN2"
+        android:paddingTop="@dimen/padTop"/>
+
+    <TextView
+        android:id="@+id/tvP1"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"
+        android:textStyle="bold"
+        android:textSize="@dimen/sizeData"
+        android:layout_below="@+id/tvDataName"
+        android:paddingTop="@dimen/padTop"/>
+
+    <TextView
+        android:id="@+id/tvP2"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textStyle="bold"
+        android:textSize="@dimen/sizeData"
+        android:layout_below="@+id/tvN2"
+        android:layout_toRightOf="@+id/tvP1"
+        android:paddingTop="@dimen/padTop" />
+
+    <TextView
+        android:id="@+id/tvDataPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/sizeData"
+        android:layout_below="@+id/tvDataName"
+        android:layout_toRightOf="@+id/tvP2"
+        android:paddingTop="@dimen/padTop"/>
+
+
+    <TextView
+        android:id="@+id/tvE1"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:text="Email"
+        android:textStyle="bold"
+        android:textSize="@dimen/sizeData"
+        android:layout_below="@+id/tvDataPhone"
+        android:paddingTop="@dimen/padTop"/>
+
+    <TextView
+        android:id="@+id/tvE2"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textStyle="bold"
+        android:textSize="@dimen/sizeData"
+        android:layout_below="@+id/tvP2"
+        android:layout_toRightOf="@+id/tvE1"
+        android:paddingTop="@dimen/padTop" />
+
+    <TextView
+        android:id="@+id/tvDataEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/sizeData"
+        android:layout_below="@+id/tvDataPhone"
+        android:layout_toRightOf="@+id/tvE2"
+        android:paddingTop="@dimen/padTop"/>
+
+</RelativeLayout>
