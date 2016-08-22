@@ -1,6 +1,7 @@
 package com.example.vi.login;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -91,6 +92,8 @@ public class RecyclerviewAdapter extends RecyclerView.Adapter<RecyclerviewAdapte
                 @Override
                 public void onClick(View view) {
                     Snackbar.make(view,"You Click ~ " + tv_cv.getText().toString(),Snackbar.LENGTH_SHORT).setAction("action",null).show();
+                    Intent intent = new Intent(context,CollapseActivity.class);
+                    context.startActivity(intent);
                 }
             });
         }
