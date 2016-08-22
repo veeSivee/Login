@@ -15,13 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/padTop"
-        android:hint="Full Name">
+        android:hint="@string/fullname">
         <EditText
             android:id="@+id/etFullname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:hint="Full Name"
+            android:hint="@string/fullname"
+            android:digits="@string/char_input"
             android:singleLine="true"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -31,14 +32,14 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/padTop"
         android:layout_below="@+id/tlFullname"
-        android:hint="Phone Number">
+        android:hint="@string/phone">
 
         <EditText
             android:id="@+id/etPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:hint="Phone Number"
+            android:hint="@string/phone"
             android:maxLength="12"/>
     </android.support.design.widget.TextInputLayout>
 
@@ -48,14 +49,14 @@
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/padTop"
         android:layout_below="@+id/tlPhone"
-        android:hint="Email">
+        android:hint="@string/email">
 
         <EditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:hint="Email"
+            android:hint="@string/email"
             android:layout_alignLeft="@+id/tvEmail"
             android:layout_below="@+id/tvEmail" />
     </android.support.design.widget.TextInputLayout>
@@ -66,7 +67,7 @@
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SUBMIT"
+        android:text="@string/submit"
         android:textStyle="bold"
         android:layout_below="@+id/tlEmail"
         android:layout_marginTop="67dp"

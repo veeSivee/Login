@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">Login</string>
+    <string name="error_name">Name cannot empty</string>
+    <string name="error_phone">Phone cannot empty</string>
+    <string name="error_email">Sample email : myemail@gmail.com</string>
+
+    <string name="fullname">Full Name"</string>
+    <string name="phone">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="submit">S U B M I T</string>
+    <string name="symbol1">:</string>
+    <string name="char_input">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .</string>
+
+    <string name="tag_name">name</string>
+    <string name="tag_phone">phone</string>
+    <string name="tag_email">email</string>
+    <string name="title_activity_nav">NavActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

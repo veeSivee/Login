@@ -7,7 +7,7 @@ import android.widget.TextView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DataLogin extends AppCompatActivity {
+public class DataLoginActivity extends AppCompatActivity {
 
     @BindView(R.id.tvDataName) TextView tvDataName;
     @BindView(R.id.tvDataPhone) TextView tvDataPhone;
@@ -20,13 +20,17 @@ public class DataLogin extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        String name = getIntent().getStringExtra("name");
-        String phone = getIntent().getStringExtra("phone");
-        String email = getIntent().getStringExtra("email");
+        init();
+    }
+
+    private void init(){
+
+        String name = getIntent().getStringExtra(getResources().getString(R.string.tag_name));
+        String phone = getIntent().getStringExtra(getResources().getString(R.string.tag_phone));
+        String email = getIntent().getStringExtra(getResources().getString(R.string.tag_email));
 
         tvDataName.setText(name);
         tvDataPhone.setText(phone);
         tvDataEmail.setText(email);
-
     }
 }

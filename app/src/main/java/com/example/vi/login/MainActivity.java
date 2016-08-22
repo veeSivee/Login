@@ -9,7 +9,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,9 +23,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @BindView(R.id.tlPhone) TextInputLayout tlPhone;
     @BindView(R.id.tlEmail) TextInputLayout tlEmail;
 
-    private boolean valName,valPhone,valEmail;
-    private String name, phone, email;
-
     ValidasiData validasiData;
 
     @Override
@@ -35,15 +31,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
-        inisialisasi();
+        init();
     }
 
-    private void inisialisasi(){
+    private void init(){
 
         validasiData = new ValidasiData();
-        valName = false;
-        valPhone = false;
-        valEmail = false;
 
         btnSUbmit.setOnClickListener(this);
         etName.addTextChangedListener(this);
@@ -64,29 +57,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         boolean valEmail = validasiData.isEmailValid(email);
 
         if(!valName){
-            tlFullname.setError("Name cannot empty");
+            tlFullname.setError(getResources().getString(R.string.error_name));
         }else{
             tlFullname.setError(null);
         }
 
         if(!valPhone){
-            tlPhone.setError("Phone cannot empty");
+            tlPhone.setError(getResources().getString(R.string.error_phone));
         }else{
             tlPhone.setError(null);
         }
 
         if(!valEmail){
-            tlEmail.setError("sample email : myemail@gmail.com");
+            tlEmail.setError(getResources().getString(R.string.error_email));
         }else{
             tlEmail.setError(null);
         }
 
 
         if(valName && valPhone && valEmail){
-            Intent intent = new Intent(this,DataLogin.class);
-            intent.putExtra("name",name);
-            intent.putExtra("phone",phone);
-            intent.putExtra("email",email);
+            Intent intent = new Intent(this,NavActivity.class);
+            intent.putExtra(getResources().getString(R.string.tag_name),name);
+            intent.putExtra(getResources().getString(R.string.tag_phone),phone);
+            intent.putExtra(getResources().getString(R.string.tag_email),email);
             startActivity(intent);
         }
 
