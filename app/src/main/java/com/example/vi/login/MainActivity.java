@@ -1,6 +1,7 @@
 package com.example.vi.login;
 
 import android.content.Intent;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -8,17 +9,19 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, TextWatcher{
 
-
-    Button btnSUbmit;
-    TextView tvWarningName, tvWarningPhone, tvWarningEmail;
-    EditText etName, etPhone, etEmail;
-
-    private boolean valName,valPhone,valEmail;
-    private String name, phone, email;
+    @BindView(R.id.btnSubmit) Button btnSUbmit;
+    @BindView(R.id.etFullname) EditText etName;
+    @BindView(R.id.etPhone) EditText etPhone;
+    @BindView(R.id.etEmail) EditText etEmail;
+    @BindView(R.id.tlFullname) TextInputLayout tlFullname;
+    @BindView(R.id.tlPhone) TextInputLayout tlPhone;
+    @BindView(R.id.tlEmail) TextInputLayout tlEmail;
 
     ValidasiData validasiData;
 
@@ -26,24 +29,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        inisialisasi();
+        init();
     }
 
-    private void inisialisasi(){
+    private void init(){
 
         validasiData = new ValidasiData();
-        valName = false;
-        valPhone = false;
-        valEmail = false;
-
-        btnSUbmit = (Button)findViewById(R.id.btnSubmit);
-        tvWarningName = (TextView)findViewById(R.id.tvWarningFullname);
-        tvWarningPhone = (TextView)findViewById(R.id.tvWarningPhone);
-        tvWarningEmail = (TextView)findViewById(R.id.tvWarningEmail);
-        etName = (EditText)findViewById(R.id.etFullname);
-        etPhone = (EditText)findViewById(R.id.etPhone);
-        etEmail= (EditText)findViewById(R.id.etEmail);
 
         btnSUbmit.setOnClickListener(this);
         etName.addTextChangedListener(this);
@@ -64,23 +57,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         boolean valEmail = validasiData.isEmailValid(email);
 
         if(!valName){
-            tvWarningName.setText("Name cannot empty");
+            tlFullname.setError(getResources().getString(R.string.error_name));
+        }else{
+            tlFullname.setError(null);
         }
 
         if(!valPhone){
-            tvWarningPhone.setText("Phone cannot empty");
+            tlPhone.setError(getResources().getString(R.string.error_phone));
+        }else{
+            tlPhone.setError(null);
         }
 
         if(!valEmail){
-            tvWarningEmail.setText("sample email : myemail@gmail.com");
+            tlEmail.setError(getResources().getString(R.string.error_email));
+        }else{
+            tlEmail.setError(null);
         }
 
 
         if(valName && valPhone && valEmail){
-            Intent intent = new Intent(this,DataLogin.class);
-            intent.putExtra("name",name);
-            intent.putExtra("phone",phone);
-            intent.putExtra("email",email);
+            Intent intent = new Intent(this,NavActivity.class);
+            intent.putExtra(getResources().getString(R.string.tag_name),name);
+            intent.putExtra(getResources().getString(R.string.tag_phone),phone);
+            intent.putExtra(getResources().getString(R.string.tag_email),email);
             startActivity(intent);
         }
 
