@@ -1,11 +1,21 @@
 package com.example.vi.login;
 
+import android.content.Context;
+import android.util.Log;
 import android.widget.EditText;
 
 /**
  * Created by taufiqotulfaidah on 8/19/16.
  */
 public class ValidasiData {
+
+    Context context;
+
+    public ValidasiData(){}
+
+    public ValidasiData(Context context){
+        this.context = context;
+    }
 
     public boolean isDataNotNull(String name){
         boolean cek = true;
@@ -27,5 +37,19 @@ public class ValidasiData {
         }
 
         return cek;
+    }
+
+    public boolean isAccountValid(String username,String pass){
+
+        if(username.toUpperCase().equals(context.getResources().getString(R.string.user_valid))
+                && pass.toUpperCase().equals(context.getResources().getString(R.string.pass_valid))){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    private void logView(String printText){
+        Log.i("LogView",printText);
     }
 }

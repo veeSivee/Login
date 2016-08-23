@@ -115,9 +115,12 @@ public class NavActivity extends AppCompatActivity
 
     private void init(){
 
-        String name = getIntent().getStringExtra(getResources().getString(R.string.tag_name));
+        /*String name = getIntent().getStringExtra(getResources().getString(R.string.tag_name));
         String phone = getIntent().getStringExtra(getResources().getString(R.string.tag_phone));
-        String email = getIntent().getStringExtra(getResources().getString(R.string.tag_email));
+        String email = getIntent().getStringExtra(getResources().getString(R.string.tag_email));*/
+        String name = "name";
+        String phone = "phone";
+        String email = "email";
         String index = "";
 
         GridLayoutManager gridLayoutVertical = new GridLayoutManager(this,1);

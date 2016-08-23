@@ -4,11 +4,18 @@
     <string name="error_phone">Phone cannot empty</string>
     <string name="error_email">Sample email : myemail@gmail.com</string>
 
+    <string name="user_name">U s e r    N a m e"</string>
+    <string name="password">P a s s w o r d"</string>
     <string name="fullname">Full Name"</string>
     <string name="phone">Phone Number</string>
     <string name="email">Email</string>
     <string name="submit">S U B M I T</string>
+    <string name="login">L O G I N</string>
     <string name="symbol1">:</string>
+    <string name="user_valid">ADMIN</string>
+    <string name="pass_valid">PASSWORD</string>
+    <string name="error_not_valid_account">Username or password is not valid</string>
+
     <string name="char_input">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .</string>
 
     <string name="tag_name">name</string>
