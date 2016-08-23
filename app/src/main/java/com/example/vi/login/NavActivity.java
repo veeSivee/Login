@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -17,6 +18,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -25,6 +27,8 @@ public class NavActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.rc_data) RecyclerView rc_data;
+    //@BindView(R.id.tv_nav_username) TextView tv_nav_username;
+    TextView tv_nav_username;
 
     RecyclerviewAdapter recyclerviewAdapter;
     SharedPreferences sharedPreferences;
@@ -57,6 +61,11 @@ public class NavActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View v = navigationView.getHeaderView(0);
+        //ButterKnife.bind(NavActivity.this,v);
+
+        tv_nav_username = (TextView)v.findViewById(R.id.tv_nav_username);
 
         init();
     }
@@ -121,6 +130,10 @@ public class NavActivity extends AppCompatActivity
 
         recyclerviewAdapter = new RecyclerviewAdapter(this);
         rc_data.setAdapter(recyclerviewAdapter);
+
+        String name = getIntent().getStringExtra(getResources().getString(R.string.tag_name));
+        tv_nav_username.setText(name);
+
     }
 
     @Override
@@ -135,5 +148,9 @@ public class NavActivity extends AppCompatActivity
             recyclerviewAdapter.addItem(recyclerviewAdapter.getItemCount(),name,
                     phone, email);
         }
+    }
+
+    private void logView(String printText){
+        Log.i("LogView",printText);
     }
 }

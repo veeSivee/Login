@@ -44,6 +44,7 @@ public class LoginPageActivity extends AppCompatActivity implements View.OnClick
             tl_password.setError(null);
 
             Intent intent = new Intent(this,NavActivity.class);
+            intent.putExtra(getResources().getString(R.string.tag_name),user);
             startActivity(intent);
             finish();
         }else{
