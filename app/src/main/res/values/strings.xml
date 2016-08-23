@@ -16,6 +16,8 @@
     <string name="pass_valid">PASSWORD</string>
     <string name="error_not_valid_account">Username or password is not valid</string>
 
+    <string name="prefer_name">prefdata</string>
+
     <string name="char_input">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .</string>
 
     <string name="tag_name">name</string>

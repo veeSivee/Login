@@ -1,5 +1,8 @@
 package com.example.vi.login;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,6 +27,7 @@ public class NavActivity extends AppCompatActivity
     @BindView(R.id.rc_data) RecyclerView rc_data;
 
     RecyclerviewAdapter recyclerviewAdapter;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +43,9 @@ public class NavActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                Intent intent = new Intent(NavActivity.this,MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -94,18 +99,11 @@ public class NavActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_logout) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+            Intent intent = new Intent(NavActivity.this,LoginPageActivity.class);
+            startActivity(intent);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -115,13 +113,7 @@ public class NavActivity extends AppCompatActivity
 
     private void init(){
 
-        /*String name = getIntent().getStringExtra(getResources().getString(R.string.tag_name));
-        String phone = getIntent().getStringExtra(getResources().getString(R.string.tag_phone));
-        String email = getIntent().getStringExtra(getResources().getString(R.string.tag_email));*/
-        String name = "name";
-        String phone = "phone";
-        String email = "email";
-        String index = "";
+        sharedPreferences = getSharedPreferences(getResources().getString(R.string.prefer_name),Context.MODE_PRIVATE);
 
         GridLayoutManager gridLayoutVertical = new GridLayoutManager(this,1);
         rc_data.setHasFixedSize(true);
@@ -129,11 +121,19 @@ public class NavActivity extends AppCompatActivity
 
         recyclerviewAdapter = new RecyclerviewAdapter(this);
         rc_data.setAdapter(recyclerviewAdapter);
+    }
 
-        for(int i=0; i<10;i++){
-            index = String.valueOf(recyclerviewAdapter.getItemCount()+1);
-            recyclerviewAdapter.addItem(recyclerviewAdapter.getItemCount(),index + " " + name,
-                    index + " " + phone, index + " " + email);
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        String name = sharedPreferences.getString(getResources().getString(R.string.tag_name),null);
+        String phone = sharedPreferences.getString(getResources().getString(R.string.tag_phone),null);
+        String email = sharedPreferences.getString(getResources().getString(R.string.tag_email),null);
+
+        if(name!=null){
+            recyclerviewAdapter.addItem(recyclerviewAdapter.getItemCount(),name,
+                    phone, email);
         }
     }
 }

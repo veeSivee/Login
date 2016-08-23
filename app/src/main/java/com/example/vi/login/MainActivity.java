@@ -1,6 +1,8 @@
 package com.example.vi.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -76,11 +78,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         if(valName && valPhone && valEmail){
-            Intent intent = new Intent(this,NavActivity.class);
-            intent.putExtra(getResources().getString(R.string.tag_name),name);
-            intent.putExtra(getResources().getString(R.string.tag_phone),phone);
-            intent.putExtra(getResources().getString(R.string.tag_email),email);
-            startActivity(intent);
+
+            SharedPreferences sharedPreferences = getSharedPreferences(getResources().getString(R.string.prefer_name), Context.MODE_PRIVATE);
+
+            SharedPreferences.Editor edit = sharedPreferences.edit();
+            edit.putString(getResources().getString(R.string.tag_name),name);
+            edit.putString(getResources().getString(R.string.tag_phone),phone);
+            edit.putString(getResources().getString(R.string.tag_email),email);
+            edit.commit();
+            finish();
         }
 
     }

@@ -45,6 +45,7 @@ public class LoginPageActivity extends AppCompatActivity implements View.OnClick
 
             Intent intent = new Intent(this,NavActivity.class);
             startActivity(intent);
+            finish();
         }else{
             tl_password.setError(getResources().getString(R.string.error_not_valid_account));
         }
