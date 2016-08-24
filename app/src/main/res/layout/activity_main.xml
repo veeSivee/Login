@@ -14,8 +14,7 @@
         android:id="@+id/tlFullname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/padTop"
-        android:hint="@string/fullname">
+        android:paddingTop="@dimen/padTop">
         <EditText
             android:id="@+id/etFullname"
             android:layout_width="match_parent"
@@ -31,8 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/padTop"
-        android:layout_below="@+id/tlFullname"
-        android:hint="@string/phone">
+        android:layout_below="@+id/tlFullname">
 
         <EditText
             android:id="@+id/etPhone"
@@ -48,8 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/padTop"
-        android:layout_below="@+id/tlPhone"
-        android:hint="@string/email">
+        android:layout_below="@+id/tlPhone">
 
         <EditText
             android:id="@+id/etEmail"

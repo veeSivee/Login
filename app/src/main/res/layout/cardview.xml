@@ -49,7 +49,8 @@
             android:layout_below="@+id/cv_tv_phone"
             android:paddingTop="@dimen/pad_top_item_card"
             android:paddingLeft="@dimen/pad_top_item_card"
-            android:id="@+id/cv_tv_email" />
+            android:id="@+id/cv_tv_email"
+            android:paddingBottom="@dimen/pad_top_item_card"/>
 
     </RelativeLayout>
 </android.support.v7.widget.CardView>

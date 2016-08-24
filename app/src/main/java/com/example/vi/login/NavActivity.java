@@ -4,11 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,18 +19,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.example.vi.login.ListData.INavActView;
+import com.example.vi.login.ListData.NavActPresenter;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class NavActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, INavActView {
 
-    @BindView(R.id.rc_data) RecyclerView rc_data;
+    @BindView(R.id.rc_data)
+    RecyclerView rc_data;
+
     //@BindView(R.id.tv_nav_username) TextView tv_nav_username;
     TextView tv_nav_username;
 
     RecyclerviewAdapter recyclerviewAdapter;
     SharedPreferences sharedPreferences;
+
+    NavActPresenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +54,7 @@ public class NavActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(NavActivity.this,MainActivity.class);
-                startActivity(intent);
+                mPresenter.clickFabNav();
             }
         });
 
@@ -80,28 +85,6 @@ public class NavActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.nav, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -110,9 +93,7 @@ public class NavActivity extends AppCompatActivity
 
         if (id == R.id.nav_logout) {
 
-            Intent intent = new Intent(NavActivity.this,LoginPageActivity.class);
-            startActivity(intent);
-            finish();
+            mPresenter.clickLogout();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -122,6 +103,7 @@ public class NavActivity extends AppCompatActivity
 
     private void init(){
 
+        mPresenter = new NavActPresenter(this);
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.prefer_name),Context.MODE_PRIVATE);
 
         GridLayoutManager gridLayoutVertical = new GridLayoutManager(this,1);
@@ -133,24 +115,53 @@ public class NavActivity extends AppCompatActivity
 
         String name = getIntent().getStringExtra(getResources().getString(R.string.tag_name));
         tv_nav_username.setText(name);
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
+        checkInsert();
+    }
+
+    @Override
+    public void showNewData() {
+
         String name = sharedPreferences.getString(getResources().getString(R.string.tag_name),null);
         String phone = sharedPreferences.getString(getResources().getString(R.string.tag_phone),null);
         String email = sharedPreferences.getString(getResources().getString(R.string.tag_email),null);
 
-        if(name!=null){
-            recyclerviewAdapter.addItem(recyclerviewAdapter.getItemCount(),name,
-                    phone, email);
-        }
+        recyclerviewAdapter.addItem(recyclerviewAdapter.getItemCount(),name,
+                phone, email);
     }
 
-    private void logView(String printText){
-        Log.i("LogView",printText);
+    @Override
+    public void clearData() {
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString(getResources().getString(R.string.tag_name),"");
+        edit.putString(getResources().getString(R.string.tag_phone),"");
+        edit.putString(getResources().getString(R.string.tag_email),"");
+        edit.commit();
     }
+
+    @Override
+    public void showAddDataActivity() {
+
+        Intent intent = new Intent(NavActivity.this,MainActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
+    public void logOut() {
+
+        Intent intent = new Intent(NavActivity.this,LoginPageActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void checkInsert(){
+        String name = sharedPreferences.getString(getResources().getString(R.string.tag_name),null);
+        mPresenter.insertData(name);
+    }
+
 }
