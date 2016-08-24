@@ -23,18 +23,29 @@ public class LoginPresenter implements ILoginPresenter{
     @Override
     public void clickLogin(String name, String password) {
         if(validasiData.isAccountValid(name,password)){
+
+            view.loginSuccess();
+            view.saveDataLogin();
+            view.openListDataActivity(name);
+            view.finishActivity();
+        }else{
+            view.loginFailed();
+        }
+    }
+
+    @Override
+    public void start() {
+        view.readDataLogin();
+    }
+
+    @Override
+    public void checkLogin(String name, String password) {
+
+        if(validasiData.isAccountValid(name,password)){
+
             view.loginSuccess();
             view.openListDataActivity(name);
             view.finishActivity();
-            /*tl_password.setError(null);
-
-            Intent intent = new Intent(this,NavActivity.class);
-            intent.putExtra(getResources().getString(R.string.tag_name),user);
-            startActivity(intent);
-            finish();*/
-        }else{
-            view.loginFailed();
-            //tl_password.setError(getResources().getString(R.string.error_not_valid_account));
         }
     }
 

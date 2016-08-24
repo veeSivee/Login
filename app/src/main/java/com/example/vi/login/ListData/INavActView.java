@@ -8,4 +8,5 @@ public interface INavActView {
     void clearData();
     void showAddDataActivity();
     void logOut();
+    void clearDataUser();
 }

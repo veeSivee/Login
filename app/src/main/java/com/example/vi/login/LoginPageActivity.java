@@ -1,9 +1,12 @@
 package com.example.vi.login;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -33,6 +36,7 @@ public class LoginPageActivity extends AppCompatActivity implements View.OnClick
     Button btn_login;
 
     private LoginPresenter mPresenter;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,8 +48,12 @@ public class LoginPageActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void init(){
+        sharedPreferences = getSharedPreferences(getResources().getString(R.string.prefer_login),Context.MODE_PRIVATE);
         mPresenter = new LoginPresenter(this,this);
+
         btn_login.setOnClickListener(this);
+
+        mPresenter.start();
     }
 
     @Override
@@ -76,5 +84,29 @@ public class LoginPageActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void finishActivity() {
         finish();
+    }
+
+    @Override
+    public void saveDataLogin() {
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putString(getResources().getString(R.string.tag_user),et_username.getText().toString());
+        edit.putString(getResources().getString(R.string.tag_password),et_password.getText().toString());
+        edit.commit();
+    }
+
+    @Override
+    public void readDataLogin() {
+        String user = sharedPreferences.getString(getResources().getString(R.string.tag_user),null);
+        String pass = sharedPreferences.getString(getResources().getString(R.string.tag_password),null);
+
+        /*if(pass==null){
+            Log.i("cek login empty",user + " ~ " + pass);
+        }else{
+            Log.i("cek login adaaa",user + " ~ " + pass);
+        }
+
+        Log.i("cek login",user + " ~ " + pass);*/
+
+        mPresenter.checkLogin(user,pass);
     }
 }

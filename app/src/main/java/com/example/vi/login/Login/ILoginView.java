@@ -8,4 +8,6 @@ public interface ILoginView {
     void loginFailed();
     void openListDataActivity(String user);
     void finishActivity();
+    void saveDataLogin();
+    void readDataLogin();
 }

@@ -21,7 +21,10 @@ public class NavActPresenter implements INavActPresenter {
 
     @Override
     public void insertData(String name){
-        if(!name.isEmpty()){
+
+        if(name==null || name.isEmpty()){
+
+        }else{
             view.showNewData();
             view.clearData();
         }
@@ -34,6 +37,7 @@ public class NavActPresenter implements INavActPresenter {
 
     @Override
     public void clickLogout() {
+        view.clearDataUser();
         view.logOut();
     }
 }

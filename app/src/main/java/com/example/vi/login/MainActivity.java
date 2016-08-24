@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         etName.addTextChangedListener(this);
         etPhone.addTextChangedListener(this);
         etEmail.addTextChangedListener(this);
-
     }
 
     private void readInputData(){

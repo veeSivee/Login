@@ -5,4 +5,6 @@ package com.example.vi.login.Login;
  */
 public interface ILoginPresenter {
     void clickLogin(String name,String password);
+    void start();
+    void checkLogin(String name,String password);
 }

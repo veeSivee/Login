@@ -35,7 +35,7 @@ public class NavActivity extends AppCompatActivity
     TextView tv_nav_username;
 
     RecyclerviewAdapter recyclerviewAdapter;
-    SharedPreferences sharedPreferences;
+    SharedPreferences sharedPreferences, sharedPreferencesLogin;
 
     NavActPresenter mPresenter;
 
@@ -157,6 +157,15 @@ public class NavActivity extends AppCompatActivity
         Intent intent = new Intent(NavActivity.this,LoginPageActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void clearDataUser() {
+        sharedPreferencesLogin = getSharedPreferences(getResources().getString(R.string.prefer_login),Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferencesLogin.edit();
+        edit.putString(getResources().getString(R.string.tag_user),"");
+        edit.putString(getResources().getString(R.string.tag_password),"");
+        edit.commit();
     }
 
     private void checkInsert(){
