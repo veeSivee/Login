@@ -41,15 +41,11 @@ public class ValidasiData {
 
     public boolean isAccountValid(String username,String pass){
 
-        if(username.toUpperCase().equals(context.getResources().getString(R.string.user_valid))
-                && pass.toUpperCase().equals(context.getResources().getString(R.string.pass_valid))){
+        if(pass.toUpperCase().equals(context.getResources().getString(R.string.pass_valid))){
             return true;
         }else{
             return false;
         }
     }
 
-    private void logView(String printText){
-        Log.i("LogView",printText);
-    }
 }

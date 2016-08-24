@@ -5,6 +5,6 @@ package com.example.vi.login.AddData;
  */
 public interface IAddDataPresenter {
     void clickSubmit(String name,String phone,String email);
-    void clickBack(String name,String phone,String email);
+    void clickBack();
     void textChange(String name,String phone,String email);
 }

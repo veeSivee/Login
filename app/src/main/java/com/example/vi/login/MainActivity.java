@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void afterTextChanged(Editable editable) {
-        //viewButton();
+
         readInputData();
         mPresenter.textChange(name,phone,email);
     }
@@ -111,9 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
 
-        readInputData();
-
-        mPresenter.clickBack(name,phone,email);
+        mPresenter.clickBack();
 
         super.onBackPressed();
     }

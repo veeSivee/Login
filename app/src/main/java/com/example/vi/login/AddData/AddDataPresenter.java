@@ -50,8 +50,8 @@ public class AddDataPresenter implements IAddDataPresenter {
     }
 
     @Override
-    public void clickBack(String name,String phone,String email) {
-        view.addSharedPreference(name,phone,email);
+    public void clickBack() {
+        //view.addSharedPreference(name,phone,email);
         view.finishActivity();
     }
 
