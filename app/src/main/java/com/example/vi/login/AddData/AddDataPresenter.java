@@ -1,6 +1,5 @@
-package com.example.vi.login.AddData;
+package com.example.vi.login.adddata;
 
-import com.example.vi.login.R;
 import com.example.vi.login.ValidasiData;
 
 /**

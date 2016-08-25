@@ -1,4 +1,4 @@
-package com.example.vi.login.AddData;
+package com.example.vi.login.adddata;
 
 /**
  * Created by taufiqotulfaidah on 8/24/16.

@@ -1,6 +1,5 @@
-package com.example.vi.login;
+package com.example.vi.login.adddata;
 
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
@@ -13,8 +12,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.vi.login.AddData.AddDataPresenter;
-import com.example.vi.login.AddData.IAddDataView;
+import com.example.vi.login.R;
+import com.example.vi.login.adddata.AddDataPresenter;
+import com.example.vi.login.adddata.IAddDataView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

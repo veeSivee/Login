@@ -1,4 +1,4 @@
-package com.example.vi.login;
+package com.example.vi.login.login;
 
 import android.content.Context;
 import android.content.Intent;
@@ -6,14 +6,14 @@ import android.content.SharedPreferences;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.vi.login.Login.ILoginView;
-import com.example.vi.login.Login.LoginPresenter;
+import com.example.vi.login.R;
+import com.example.vi.login.listdata.NavActivity;
+import com.example.vi.login.login.ILoginView;
+import com.example.vi.login.login.LoginPresenter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

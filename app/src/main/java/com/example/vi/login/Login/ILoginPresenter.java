@@ -1,4 +1,4 @@
-package com.example.vi.login.Login;
+package com.example.vi.login.login;
 
 /**
  * Created by taufiqotulfaidah on 8/24/16.

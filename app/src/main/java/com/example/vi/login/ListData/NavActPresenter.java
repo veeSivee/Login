@@ -1,7 +1,4 @@
-package com.example.vi.login.ListData;
-
-import com.example.vi.login.ListData.INavActPresenter;
-import com.example.vi.login.ListData.INavActView;
+package com.example.vi.login.listdata;
 
 /**
  * Created by taufiqotulfaidah on 8/23/16.

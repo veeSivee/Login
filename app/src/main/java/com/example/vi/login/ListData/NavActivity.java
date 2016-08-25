@@ -1,10 +1,9 @@
-package com.example.vi.login;
+package com.example.vi.login.listdata;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,12 +14,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.example.vi.login.ListData.INavActView;
-import com.example.vi.login.ListData.NavActPresenter;
+import com.example.vi.login.login.LoginPageActivity;
+import com.example.vi.login.adddata.MainActivity;
+import com.example.vi.login.R;
+import com.example.vi.login.RecyclerviewAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

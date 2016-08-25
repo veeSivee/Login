@@ -9,20 +9,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".adddata.MainActivity"
             android:screenOrientation="portrait">
         </activity>
         <activity
-            android:name=".DataLoginActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".NavActivity"
+            android:name=".listdata.NavActivity"
             android:label="@string/title_activity_nav"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CollapseActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".LoginPageActivity"
+        <activity android:name=".login.LoginPageActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

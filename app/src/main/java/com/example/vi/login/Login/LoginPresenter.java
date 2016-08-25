@@ -1,10 +1,7 @@
-package com.example.vi.login.Login;
+package com.example.vi.login.login;
 
 import android.content.Context;
-import android.content.Intent;
 
-import com.example.vi.login.NavActivity;
-import com.example.vi.login.R;
 import com.example.vi.login.ValidasiData;
 
 /**

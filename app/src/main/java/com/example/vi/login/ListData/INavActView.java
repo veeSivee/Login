@@ -1,4 +1,4 @@
-package com.example.vi.login.ListData;
+package com.example.vi.login.listdata;
 
 /**
  * Created by taufiqotulfaidah on 8/23/16.
