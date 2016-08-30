@@ -15,6 +15,8 @@
     <string name="user_valid">ADMIN</string>
     <string name="pass_valid">PASSWORD</string>
     <string name="error_not_valid_account">Username or password is not valid</string>
+    <string name="error_not_valid_user">Invalid username</string>
+    <string name="error_not_valid_password">Invalid Password</string>
 
     <string name="prefer_name">prefdata</string>
     <string name="prefer_login">datalogin</string>
@@ -23,6 +25,7 @@
     <string name="tag_password">pass</string>
 
     <string name="char_input">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .</string>
+    <string name="char_number_input">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .1234567890</string>
 
     <string name="tag_name">name</string>
     <string name="tag_phone">phone</string>

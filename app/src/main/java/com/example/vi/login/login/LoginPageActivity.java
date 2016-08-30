@@ -12,13 +12,15 @@ import android.widget.EditText;
 
 import com.example.vi.login.R;
 import com.example.vi.login.listdata.NavActivity;
-import com.example.vi.login.login.ILoginView;
-import com.example.vi.login.login.LoginPresenter;
+import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding.widget.RxTextView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.Observable;
+import rx.Subscription;
 
-public class LoginPageActivity extends AppCompatActivity implements View.OnClickListener, ILoginView {
+public class LoginPageActivity extends AppCompatActivity implements ILoginView {
 
     @BindView(R.id.tl_username)
     TextInputLayout tl_username;
@@ -38,6 +40,8 @@ public class LoginPageActivity extends AppCompatActivity implements View.OnClick
     private LoginPresenter mPresenter;
     private SharedPreferences sharedPreferences;
 
+    Subscription subUser, subPass, subLogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,13 +55,40 @@ public class LoginPageActivity extends AppCompatActivity implements View.OnClick
         sharedPreferences = getSharedPreferences(getResources().getString(R.string.prefer_login),Context.MODE_PRIVATE);
         mPresenter = new LoginPresenter(this,this);
 
-        btn_login.setOnClickListener(this);
+        //btn_login.setOnClickListener(this);
+
+        tl_username.setError(getResources().getString(R.string.error_not_valid_user));
+        subUser = RxTextView.textChanges(et_username)
+                .map(inputUser->(inputUser.length() == 0) || (inputUser.length() >= 5))
+                .subscribe(isValid->setErrorUser(!isValid));
+
+        tl_password.setError(getResources().getString(R.string.error_not_valid_password));
+        subPass = RxTextView.textChanges(et_password)
+                .map(inputPass->(inputPass.length()==0) || (inputPass.toString().toUpperCase().matches(getResources().getString(R.string.pass_valid))))
+                .subscribe(isValidp->setErrorPassword(!isValidp));
+
+        subLogin = RxView.clicks(btn_login).subscribe(aVoid -> clickLoginButton());
 
         mPresenter.start();
     }
 
-    @Override
-    public void onClick(View view) {
+    private void setErrorUser(Boolean bool){
+        if(bool){
+            tl_username.getChildAt(1).setVisibility(View.VISIBLE);
+        }else{
+            tl_username.getChildAt(1).setVisibility(View.GONE);
+        }
+    }
+
+    private void setErrorPassword(Boolean bool){
+        if(bool){
+            tl_password.getChildAt(1).setVisibility(View.VISIBLE);
+        }else{
+            tl_password.getChildAt(1).setVisibility(View.GONE);
+        }
+    }
+
+    private void clickLoginButton(){
         String user = et_username.getText().toString();
         String pass = et_password.getText().toString();
 
@@ -98,14 +129,6 @@ public class LoginPageActivity extends AppCompatActivity implements View.OnClick
     public void readDataLogin() {
         String user = sharedPreferences.getString(getResources().getString(R.string.tag_user),null);
         String pass = sharedPreferences.getString(getResources().getString(R.string.tag_password),null);
-
-        /*if(pass==null){
-            Log.i("cek login empty",user + " ~ " + pass);
-        }else{
-            Log.i("cek login adaaa",user + " ~ " + pass);
-        }
-
-        Log.i("cek login",user + " ~ " + pass);*/
 
         mPresenter.checkLogin(user,pass);
     }

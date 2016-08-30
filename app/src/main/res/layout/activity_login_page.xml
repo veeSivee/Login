@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/user_name"
-            android:digits="@string/char_input"/>
+            android:digits="@string/char_number_input"/>
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
