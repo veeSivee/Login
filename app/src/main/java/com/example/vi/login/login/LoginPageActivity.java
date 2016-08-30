@@ -114,6 +114,8 @@ public class LoginPageActivity extends AppCompatActivity implements ILoginView {
 
     @Override
     public void finishActivity() {
+        subUser.unsubscribe();
+        subPass.unsubscribe();
         finish();
     }
 
