@@ -3,6 +3,7 @@ package com.example.vi.login.login;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -58,14 +59,29 @@ public class LoginPageActivity extends AppCompatActivity implements ILoginView {
         //btn_login.setOnClickListener(this);
 
         tl_username.setError(getResources().getString(R.string.error_not_valid_user));
-        subUser = RxTextView.textChanges(et_username)
+        tl_password.setError(getResources().getString(R.string.error_not_valid_password));
+
+        /*subUser = RxTextView.textChanges(et_username)
                 .map(inputUser->(inputUser.length() == 0) || (inputUser.length() >= 5))
                 .subscribe(isValid->setErrorUser(!isValid));
 
-        tl_password.setError(getResources().getString(R.string.error_not_valid_password));
         subPass = RxTextView.textChanges(et_password)
                 .map(inputPass->(inputPass.length()==0) || (inputPass.toString().toUpperCase().matches(getResources().getString(R.string.pass_valid))))
                 .subscribe(isValidp->setErrorPassword(!isValidp));
+
+        subLogin = RxView.clicks(btn_login).subscribe(aVoid -> clickLoginButton());*/
+
+        Observable<Boolean> validUser = RxTextView.textChanges(et_username)
+                .map(inputUser-> (inputUser.length()==0) || (inputUser.length() > 5));
+        subUser = validUser.subscribe(isValid->setErrorUser(!isValid));
+
+        Observable<Boolean> validPass = RxTextView.textChanges(et_password)
+                .map(inputPass-> inputPass.toString().toUpperCase())
+                .map(inputPass-> (inputPass.length()==0) || (inputPass.matches(getResources().getString(R.string.pass_valid))));
+        subPass = validPass.subscribe(isValid->setErrorPassword(!isValid));
+
+        Observable<Boolean> registerEnable = Observable.combineLatest(validUser,validPass,(a,b)-> a && b);
+        registerEnable.subscribe(enable-> setEnableButton(enable));
 
         subLogin = RxView.clicks(btn_login).subscribe(aVoid -> clickLoginButton());
 
@@ -86,6 +102,17 @@ public class LoginPageActivity extends AppCompatActivity implements ILoginView {
         }else{
             tl_password.getChildAt(1).setVisibility(View.GONE);
         }
+    }
+
+    private void setEnableButton(Boolean bool){
+
+        if(bool){
+            btn_login.setBackgroundColor(Color.BLUE);
+        }else {
+            btn_login.setBackgroundColor(Color.GRAY);
+        }
+
+        btn_login.setEnabled(bool);
     }
 
     private void clickLoginButton(){
@@ -116,6 +143,7 @@ public class LoginPageActivity extends AppCompatActivity implements ILoginView {
     public void finishActivity() {
         subUser.unsubscribe();
         subPass.unsubscribe();
+        subLogin.unsubscribe();
         finish();
     }
 

@@ -101,6 +101,7 @@ public class NavActivity extends AppCompatActivity
         return true;
     }
 
+
     private void init(){
 
         mPresenter = new NavActPresenter(this);
