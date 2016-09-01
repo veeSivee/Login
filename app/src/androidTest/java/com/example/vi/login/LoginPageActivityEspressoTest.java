@@ -34,18 +34,18 @@ public class LoginPageActivityEspressoTest {
 
         onView(withId(R.id.et_username)).perform(typeText(user), ViewActions.closeSoftKeyboard());
 
-        onView(withId(R.id.et_password)).perform(typeText("password"), ViewActions.closeSoftKeyboard());
+        //onView(withId(R.id.et_password)).perform(typeText("password"), ViewActions.closeSoftKeyboard());
 
         //onView(withId(R.id.btn_login)).perform(click());
 
     }
 
-    /*@Test
+    @Test
     public void tes2(){
         String pass = "password";
 
         onView(withId(R.id.et_password)).perform(typeText(pass));
-    }*/
+    }
 
     @Test
     public void tesClick(){
